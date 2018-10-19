@@ -11,6 +11,8 @@ class Application(Text):
     def __init__(self, master):
         Text.__init__(self, master)
 
+        #title for the main window
+        self.master.title("Library Management System ")
 
         #heading for the main window
         self.heading = Label(master, text="     Library Management System", font=('arial 40 bold'), bg='#49E3CE')
@@ -82,6 +84,8 @@ class Application(Text):
             def __init__(self, faster):
                 Text.__init__(self, faster)
 
+                #title for the window
+                self.master.title("Book Search")
 
                 #labels for window
                 self.heading = Label(faster, text="    Search Books  ", font=('arial 25 bold'), bg='#F0AE59')
@@ -122,6 +126,11 @@ class Application(Text):
             	class Stan(Text):
                     def __init__(self, fram):
                         Text.__init__(self, fram)
+
+                        #title for the window
+                        self.master.title("Book Booking")
+
+
                         self.hd = Label(fram, text="   Book this Book   ", font=('arial 25 bold'), fg='steelblue')
                         self.hd.place(x=300, y=0)
 
