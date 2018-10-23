@@ -68,12 +68,10 @@ class Application(Text):
         genre = self.tags.get()
         position = self.placed.get()
         if len(name) == 0 or len(author) == 0 or len(genre) == 0 or len(position) == 0:
-            print("Failed. Please Fill up all the information")
-            messagebox.showwarning("Failed", "Please don't leave anything blank.")
-
+            messagebox.showwarning("Failed!!!", "Please don't leave anything blank!")
 
         else:
-            c.execute("INSERT INTO stuffToPlot (datestamp, name, author, genre, position) VALUES (?, ?,?, ?, ?)",(datestamp, name, author, genre, position))
+            c.execute("INSERT INTO stuffToPlot (datestamp, name, author, genre, position) VALUES (?,?,?,?,?)",(datestamp, name, author, genre, position))
             conn.commit()
             self.box.insert(END, ('Logs: Added ' +name.upper() + " by " + author+ "\n" ))
             messagebox.showinfo("Success", "Successfully added to the database")
@@ -81,47 +79,43 @@ class Application(Text):
     #search funtionality feature.
     def search_root(self):
         class Search(Text):
-            def __init__(self, faster):
-                Text.__init__(self, faster)
+            def __init__(self, master):
+                Text.__init__(self, master)
 
                 #title for the window
                 self.master.title("Book Search")
 
                 #labels for window
-                self.heading = Label(faster, text="    Search Books  ", font=('arial 25 bold'), bg='#F0AE59')
+                self.heading = Label(master, text="    Search Books  ", font=('arial 25 bold'), bg='#F0AE59')
                 self.heading.place(x=300, y=0)
 
-                self.name = Label(faster, text="Name of the Book: ", bg='#F0AE59')
+                self.name = Label(master, text="Name of the Book: ", bg='#F0AE59')
                 self.name.place(x=0, y=60)
 
                 #self.entrybox
 
-                self.ent = Entry(faster, width=45)
+                self.ent = Entry(master, width=45)
                 self.ent.place(x=160, y=60)
 
-                self.sbox = Text(faster, height=13, width=60, bg="white")
+                self.sbox = Text(master, height=13, width=60, bg="white")
                 self.sbox.place(x=50, y=130)
                 self.sbox.focus_set()
 
 
 
                 #button to perform search
-                self.bt = Button(faster,text="Search",command=self.get_it ,width=20, height=1, bg='#3D6DEE')
+                self.bt = Button(master,text="Search",command=self.get_it ,width=20, height=1, bg='#3D6DEE')
                 self.bt.place(x=560, y=60)
 
                 #button to book books
-                self.bt1 = Button(faster,text="Issue Book",command=self.book_it ,width=20, height=2, bg='#1DC550')
+                self.bt1 = Button(master,text="Issue Book",command=self.book_it ,width=20, height=2, bg='#1DC550')
                 self.bt1.place(x=560, y=150)
 
                 #button to quit
-                self.qt = Button(faster,text="Exit",command=faster.destroy ,width=20, height=2, bg='#EE3D3D').place(x=560, y=310)
+                self.qt = Button(master,text="Exit",command=master.destroy ,width=20, height=2, bg='#EE3D3D').place(x=560, y=310)
 
-           	#destroy button
-            def master_exit(self):
-            	master.destroy()
 
             #button to book books
-
             def book_it(self):
             	class Stan(Text):
                     def __init__(self, fram):
@@ -148,7 +142,7 @@ class Application(Text):
 
                         self.issue = time.strftime("%x")
                         self.date_1 = datetime.datetime.strptime(self.issue, "%m/%d/%y")
-                        self.end_date = self.date_1 + datetime.timedelta(days=21)
+                        self.end_date = self.date_1 + datetime.timedelta(days=21) # The number of days before return of book.
 
 
                         self.dla = Label(fram, text=("Issued Date: " + "                         "+ str(self.date_1)), font=('arial 15'))
@@ -191,7 +185,6 @@ class Application(Text):
                         if self.std == '' or self.bk == '' or self.num == '' or self.ph == '' or self.em == '':
                             messagebox.showwarning("Error", "Please Fill The Missing Boxes")
                         else:
-
                             content = (self.std + "\n" + self.bk + "\n" + self.num + "\n" + self.ph + "\n" + self.em +"\n" +"=====================" + "\n")
                             self.mty.insert(END, content)
                             s.call(['notify-send', 'A book has been issued', 'Notification-Library'])
@@ -209,7 +202,6 @@ class Application(Text):
             	dw.mainloop()
 
             def get_it(self):
-
                 conn = sqlite3.connect('books.db')
                 c = conn.cursor()
                 c.execute("CREATE TABLE IF NOT EXISTS stuffToPlot(datestamp TEXT, name TEXT, author TEXT, genre TEXT, position TEXT)")
