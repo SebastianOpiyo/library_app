@@ -25,7 +25,7 @@ class Application(Text):
         self.position = Label(master, text="Position of the book: ", bg='#49E3CE')
 
         self.name.place(x=0, y=70)
-        self.author.place(x=0, y=110)
+        self.author.place(x=0, y=110) 
         self.genre.place(x=0, y=150)
         self.position.place(x=0, y=190)
 
@@ -40,11 +40,11 @@ class Application(Text):
         self.position_ent = Entry(master, width=30, textvariable=self.placed).place(x=150 , y=190)
 
         #button to perform
-        self.submit = Button(master, text="Add To Database",command=self.dynamic_data_entry, width=20, height=2, bg='#3D6DEE')
+        self.submit = Button(master, text="Add To Database",command=self.dynamic_data_entry, width=20, height=2, bd=5, bg='#3D6DEE')
 
         self.submit.place(x=150, y=230)
-        self.search = Button(master, text="Search Books", width=20, height=2, command=self.search_root, bg='#1DC550').place(x=150, y=330)
-        self.quit = Button(master, text="Exit", width=20, height=2, command=master.destroy, bg='#EE3D3D').place(x=700, y=330)
+        self.search = Button(master, text="Search Books", width=20, height=2, command=self.search_root, bd=5, bg='#1DC550').place(x=150, y=330)
+        self.quit = Button(master, text="Exit", width=20, height=2, command=self.uiexit, bd=5, bg='#EE3D3D').place(x=700, y=330)
 
         #textbox to display updates
         self.box = Text(master, height=15, width=60)
@@ -55,6 +55,13 @@ class Application(Text):
     global c
     conn = sqlite3.connect('books.db')
     c = conn.cursor()
+
+    def uiexit(self):
+        uiexit = messagebox.askyesno("Confirm !!!", "Are You sure you want to Exit!?" )
+        if uiexit > 0:
+            self.master.destroy()
+            return
+
     def dynamic_data_entry(self):
         #creating the database if it doesnot exist
         c.execute("CREATE TABLE IF NOT EXISTS stuffToPlot(datestamp TEXT, name TEXT, author TEXT, genre TEXT, position TEXT)")
@@ -104,15 +111,15 @@ class Application(Text):
 
 
                 #button to perform search
-                self.bt = Button(master,text="Search",command=self.get_it ,width=20, height=1, bg='#3D6DEE')
+                self.bt = Button(master,text="Search",command=self.get_it ,width=20, height=1, bd=5, bg='#3D6DEE')
                 self.bt.place(x=560, y=60)
 
                 #button to book books
-                self.bt1 = Button(master,text="Issue Book",command=self.book_it ,width=20, height=2, bg='#1DC550')
+                self.bt1 = Button(master,text="Issue Book",command=self.book_it ,width=20, height=2, bd=5, bg='#1DC550')
                 self.bt1.place(x=560, y=150)
 
                 #button to quit
-                self.qt = Button(master,text="Exit",command=master.destroy ,width=20, height=2, bg='#EE3D3D').place(x=560, y=310)
+                self.qt = Button(master,text="Exit",command=self.uiexit, width=20, height=2, bd=5, bg='#EE3D3D').place(x=560, y=310)
 
 
             #button to book books
@@ -169,8 +176,8 @@ class Application(Text):
 
                         #button to make issue right
 
-                        self.iss = Button(fram, text="Issue", width=20, height=2, command=self.issues, bg='#1DC550').place(x=0, y=340)
-                        self.xt = Button(fram, text="Exit", width=20, height=2, command=fram.destroy, bg='#EE3D3D').place(x=200, y=340)
+                        self.iss = Button(fram, text="Issue", width=20, height=2, command=self.issues, bd=5, bg='#1DC550').place(x=0, y=340)
+                        self.xt = Button(fram, text="Exit", width=20, height=2, command=self.uiexit, bd=5, bg='#EE3D3D').place(x=200, y=340)
 
                         self.mty = Text(fram, height=16, width=50)
                         self.mty.place(x=480, y=60)
