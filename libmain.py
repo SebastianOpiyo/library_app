@@ -119,7 +119,7 @@ class Application(Text):
                 self.bt1.place(x=560, y=150)
 
                 #button to quit
-                self.qt = Button(master,text="Exit",command=self.uiexit, width=20, height=2, bd=5, bg='#EE3D3D').place(x=560, y=310)
+                self.qt = Button(master,text="Exit",command=master.destroy, width=20, height=2, bd=5, bg='#EE3D3D').place(x=560, y=310)
 
 
             #button to book books
@@ -177,7 +177,7 @@ class Application(Text):
                         #button to make issue right
 
                         self.iss = Button(fram, text="Issue", width=20, height=2, command=self.issues, bd=5, bg='#1DC550').place(x=0, y=340)
-                        self.xt = Button(fram, text="Exit", width=20, height=2, command=self.uiexit, bd=5, bg='#EE3D3D').place(x=200, y=340)
+                        self.xt = Button(fram, text="Exit", width=20, height=2, command=fram.destroy, bd=5, bg='#EE3D3D').place(x=200, y=340)
 
                         self.mty = Text(fram, height=16, width=50)
                         self.mty.place(x=480, y=60)
