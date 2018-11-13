@@ -1,4 +1,5 @@
 from tkinter import *
+import ttk as ttk
 import time
 import datetime
 import random
@@ -101,7 +102,7 @@ class Application(Text):
 
                 #self.entrybox
 
-                self.ent = Entry(master, width=45)
+                self.ent = ttk.Entry(master, width=45)
                 self.ent.place(x=160, y=60)
 
                 self.sbox = Text(master, height=13, width=60, bg="white")
@@ -136,15 +137,15 @@ class Application(Text):
                         self.hd.place(x=300, y=0)
 
                         #info of the book taker
-                        self.id = Label(fram, text="Name of Student", font=('arial 15'))
+                        self.id = ttk.Label(fram, text="Name of Student", font=('arial 15'))
                         self.id.place(x=0, y=60)
 
-                        self.book = Label(fram, text="Name of the book", font=('arial 15'))
+                        self.book = ttk.Label(fram, text="Name of the book", font=('arial 15'))
                         self.book.place(x=0, y=100)
 
-                        self.phone = Label(fram, text="Mobile Number", font=('arial 15'))
+                        self.phone = ttk.Label(fram, text="Mobile Number", font=('arial 15'))
                         self.phone.place(x=0, y=140)
-                        self.number = Label(fram, text="ID Number", font=('arial 15 '))
+                        self.number = ttk.Label(fram, text="ID Number", font=('arial 15 '))
                         self.number.place(x=0, y=180)
 
                         self.issue = time.strftime("%x")
@@ -152,7 +153,7 @@ class Application(Text):
                         self.end_date = self.date_1 + datetime.timedelta(days=21) # The number of days before return of book.
 
 
-                        self.dla = Label(fram, text=("Issued Date: " + "                         "+ str(self.date_1)), font=('arial 15'))
+                        self.dla = ttk.Label(fram, text=("Issued Date: " + "                         "+ str(self.date_1)), font=('arial 15'))
                         self.dla.place(x=0, y=220)
 
 
@@ -163,15 +164,15 @@ class Application(Text):
                         self.email.place(x=0, y=300)
 
                         #entries for the infos
-                        self.ide = Entry(fram, width=30)
+                        self.ide = ttk.Entry(fram, width=30)
                         self.ide.place(x=220, y=60)
-                        self.booke = Entry(fram, width=30)
+                        self.booke = ttk.Entry(fram, width=30)
                         self.booke.place(x=220, y=100)
-                        self.nume = Entry(fram, width=30)
+                        self.nume = ttk.Entry(fram, width=30)
                         self.nume.place(x=220, y=180)
-                        self.phe = Entry(fram, width=30)
+                        self.phe = ttk.Entry(fram, width=30)
                         self.phe.place(x=220, y=140)
-                        self.eme = Entry(fram, width=30)
+                        self.eme = ttk.Entry(fram, width=30)
                         self.eme.place(x=220, y=300)
 
                         #button to make issue right
